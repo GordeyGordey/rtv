@@ -1,0 +1,35 @@
+@ Использование: используйте табуляцию между двоеточиями и пробелами между координатами
+@ Rotation - угол поворота зависит от оси (x y z)
+@ position - позиция в пространстве (x y z)
+@ доступные цвета:
+@ красный, зеленый, синий, желтый, белый, оранжевый, голубой, фиолетовый, розовый, металлический.
+@ доступные типы света: ОКРУЖАЮЩИЙ, ТОЧЕЧНЫЙ, НАПРАВЛЕННЫЙ
+
+@figure		position	 	color	rotation		specular
+plane		0.0 -1.0 1.0	metal	0.0 1.0 0.0
+plane		0.0 0.0 6.0		orange	0.0 0.0 1.0
+plane		0.0 1.0 1.0		metal	0.0 -1.0 0.0
+
+@figure		position	 	 R 		color	rotation		specular
+cylinder	-2.0 0.0 4.5	0.25	metal	0.8 1.0 0.0		10
+cylinder	-2.0 0.0 4.5	0.25	metal	-0.8 1.0 0.0	10
+
+cylinder	0.3 0.0 4.5	0.25	metal	0.8 1.0 0.0		10
+cylinder	0.3 0.0 4.5	0.25	metal	-0.8 1.0 0.0		10
+
+cylinder	1.7 0.0 4.5	0.25	metal	0.0 1.0 0.0		10
+cylinder	2.7 0.0 4.5	0.25	metal	0.0 1.0 0.0		10
+cylinder	2.2 0.0 4.5	0.25	metal	0.4 1.0 0.0		10
+
+sphere		0.7 -0.8 4.5	0.7		orange		15
+
+sphere		2.2 1.2 4.5		0.3		orange		15
+
+
+@			position		rotation
+camera		0.0 0.0 0.0		0.0 0.0 0.0
+
+@light		type		intensity	position			color
+light		POINT		0.5			-2.5 0.2 1.01		white
+light		POINT		0.5			2.5 0.2 1.01		white
+light		AMBIENT		0.1

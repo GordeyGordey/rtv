@@ -1,0 +1,27 @@
+@	Usage: use tab between colons and spaces between coordinates
+@	rotation - angle of rotation depends on axis (x y z)
+@	position - position in space (x y z)
+@	available colors:
+@	red, green, blue, yellow, white, orange, sky-blue, violet, pink, metal.
+@	available light types: AMBIENT, POINT, DIRECTIONAL
+
+@figure		position	 	color	rotation		specular
+plane		0.0 -1.0 1.0	metal	0.0 1.0 0.0
+plane		0.0 0.0 6.0		blue	0.0 0.0 1.0
+
+@figure		position	 	 R 		color	rotation		specular
+cylinder	-1.0 0.0 4.0	0.8		green	1.0 1.0 0.0
+
+@figure		position	 	color		rotation		angle		specular
+cone		1.0 -0.2 4.1	yellow	    -1.0 1.5 0.0	80			500
+
+@figure		position	 	 R 		color	specular
+sphere		0.0 -0.5 3.5	0.8		red		5
+
+@			position		rotation
+camera		6.0 1.0 2.0		20.0 -60.0 0.0
+
+@light		type		intensity	position		color
+light		DIRECTIONAL		0.5		3.5 0.5 -3.0	white
+light		POINT			0.4		1.0 0.0 2.0		white
+light		AMBIENT			0.1
