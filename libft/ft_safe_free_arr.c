@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_safe_free_arr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 12:31:56 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/04 12:33:28 by gordey           ###   ########.fr       */
+/*   Updated: 2020/11/11 15:48:56 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_safe_free(void *item)
 		free(item);
 }
 
-void			ft_safe_free_arr(char **arr)
+void	ft_safe_free_arr(char **arr)
 {
 	char		**cpy;
 	size_t		i;

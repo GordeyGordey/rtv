@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quater_rotation.c                                  :+:      :+:    :+:   */
+/*   quaterrotation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:19:12 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/08 17:02:27 by gordey           ###   ########.fr       */
+/*   Updated: 2020/11/11 13:29:47 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void			quatNormal(t_quat *q)
+void			quat_normal(t_quat *q)
 {
 	double	quat_len;
 
@@ -24,7 +24,7 @@ void			quatNormal(t_quat *q)
 	q->vec.z /= quat_len;
 }
 
-t_quat			quatMol(t_quat a, t_quat b)
+t_quat			quat_mol(t_quat a, t_quat b)
 {
 	t_quat	res;
 
@@ -39,14 +39,14 @@ t_quat			quatMol(t_quat a, t_quat b)
 	return (res);
 }
 
-t_coord			vecRotation(t_coord vector, t_quat rotor)
+t_coord			vec_rotation(t_coord vector, t_quat rotor)
 {
 	t_quat	tmp;
 
-	tmp = quatMol(rotor, (t_quat){0.0, vector});
-	rotor.vec = vectReverse(rotor.vec);
-	quatNormal(&rotor);
-	tmp = quatMol(tmp, rotor);
+	tmp = quat_mol(rotor, (t_quat){0.0, vector});
+	rotor.vec = vect_reverse(rotor.vec);
+	quat_normal(&rotor);
+	tmp = quat_mol(tmp, rotor);
 	vector.x = tmp.vec.x;
 	vector.y = tmp.vec.y;
 	vector.z = tmp.vec.z;
@@ -66,7 +66,7 @@ static t_quat	rot(t_quat q, double angle)
 	return (axis);
 }
 
-t_quat			quatRoter(t_vector camera)
+t_quat			quat_roter(t_vector camera)
 {
 	t_quat	roter;
 	t_quat	axis_x;
@@ -77,8 +77,8 @@ t_quat			quatRoter(t_vector camera)
 	axis_x = rot((t_quat){1, (t_coord){1, 0, 0}}, camera.angles.x);
 	axis_y = rot((t_quat){1, (t_coord){0, 1, 0}}, camera.angles.y);
 	axis_z = rot((t_quat){1, (t_coord){0, 0, 1}}, camera.angles.z);
-	roter = quatMol(roter, axis_x);
-	roter = quatMol(roter, axis_y);
-	roter = quatMol(roter, axis_z);
+	roter = quat_mol(roter, axis_x);
+	roter = quat_mol(roter, axis_y);
+	roter = quat_mol(roter, axis_z);
 	return (roter);
 }

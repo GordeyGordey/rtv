@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   readfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:17:55 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/08 16:49:50 by gordey           ###   ########.fr       */
+/*   Updated: 2020/11/11 15:22:49 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		oneline(t_data *data, t_scene *objects, char *line)
 	char		**arr;
 
 	if (!(arr = ft_strsplit(line, '\t')))
-		exitFree("Malloc error\n", 1, data);
+		exit_free("Malloc error\n", 1, data);
 	if (ft_arrlen(arr) > 0)
 	{
 		if (!ft_strcmp(arr[0], "sphere"))
@@ -31,13 +31,14 @@ void		oneline(t_data *data, t_scene *objects, char *line)
 		else if (!ft_strcmp(arr[0], "camera"))
 			camera(objects, arr);
 		else if (!ft_strcmp(arr[0], "light"))
-			if (!ft_strcmp(arr[1], "AMBIENT") || !ft_strcmp(arr[1], "POINT") || !ft_strcmp(arr[1], "DIRECTIONAL"))
+			if (!ft_strcmp(arr[1], "AMBIENT") || !ft_strcmp(arr[1], "POINT")
+				|| !ft_strcmp(arr[1], "DIRECTIONAL"))
 				light(data, objects, arr);
 		ft_safe_free_arr(arr);
 	}
 }
 
-void			readScene(t_data *data, char *name)
+void		read_scene(t_data *data, char *name)
 {
 	int			fd;
 	char		*line;
@@ -45,9 +46,9 @@ void			readScene(t_data *data, char *name)
 	fd = 0;
 	fd = open(name, O_RDONLY);
 	if (fd < 0)
-		exitFree("Error: file doesn't exist\n", 1, data);
+		exit_free("Error: file doesn't exist\n", 1, data);
 	if (fd == 0 || read(fd, NULL, 0) == -1)
-		exitFree("Error: can't read file\n", 1, data);
+		exit_free("Error: can't read file\n", 1, data);
 	while (get_next_line(fd, &line))
 	{
 		if (line[0] != '@' && ft_strlen(line) > 10)
@@ -57,7 +58,7 @@ void			readScene(t_data *data, char *name)
 	close(fd);
 }
 
-void		fileExtension(char *param_name)
+void		file_extension(char *param_name)
 {
 	int		i;
 	char	*str;
@@ -67,9 +68,10 @@ void		fileExtension(char *param_name)
 	{
 		str = param_name;
 		i = ft_strlen(str) - 1;
-		if (!(str[i] && str[i - 3] == '.' && str[i - 2] == 'r' && str[i - 1] == 't' && str[i] == 'v'))
-			exitError("Invalid file extension\n Valid example: " "name.rtv\n");
+		if (!(str[i] && str[i - 3] == '.' && str[i - 2] == 'r'
+			&& str[i - 1] == 't' && str[i] == 'v'))
+			exit_error("Invalid file extension\n Valid example: " "name.rtv\n");
 	}
 	else
-		exitError("No file\n");
+		exit_error("No file\n");
 }

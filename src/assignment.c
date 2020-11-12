@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assignment.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 18:14:38 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/08 16:59:52 by gordey           ###   ########.fr       */
+/*   Created: 2020/11/11 14:48:34 by wendell           #+#    #+#             */
+/*   Updated: 2020/11/11 15:33:11 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,29 @@ static int		objectsmalloc(t_scene *objs, int *num_obj)
 	return (1);
 }
 
-void			fdValid(int fd, t_data *data)
+void			fdvalid(int fd, t_data *data)
 {
 	if (fd < 0)
-		exitFree("Error: file doesn't exist\n", 1, data);
+		exit_free("Error: file doesn't exist\n", 1, data);
 	if (fd == 0 || read(fd, NULL, 0) == -1)
-		exitFree("Error: can't read file\n", 1, data);
+		exit_free("Error: can't read file\n", 1, data);
 }
 
-static int		*countFigure(char *name, int fd, char *line, int *flags)
+void			checkcamlight(int *flags)
+{
+	if (flags[0] == 0)
+		flags[0] = 1;
+	if (flags[1] == 0 && flags[2] == 0 && flags[3] == 0 && flags[4] == 0)
+		exit_error("SCENE ERROR: There is no figures in configuration file!");
+	if (flags[5] > 1)
+		exit_error("SCENE ERROR: In configuration file should be only "
+			"1 camera! not less not more!\n");
+}
+
+static int		*countfigure(char *name, int fd, char *line, int *flags)
 {
 	fd = open(name, O_RDONLY);
-	fdValid(fd, NULL);
+	fdvalid(fd, NULL);
 	while (get_next_line(fd, &line))
 	{
 		if (line[0] != '#' && ft_strlen(line) > 10)
@@ -60,14 +71,7 @@ static int		*countFigure(char *name, int fd, char *line, int *flags)
 		free(line);
 	}
 	close(fd);
-	// check_cam_and_light(figs);
-	if (flags[0] == 0)
-		flags[0] = 1;
-	if (flags[1] == 0 && flags[2] == 0 && flags[3] == 0 && flags[4] == 0)
-		exitError("SCENE ERROR: There is no figures in configuration file!");
-	if (flags[5] > 1)
-		exitError("SCENE ERROR: In configuration file should be only "
-			"1 camera! not less not more!\n");
+	checkcamlight(flags);
 	return (flags);
 }
 
@@ -80,9 +84,10 @@ int				assignment(t_data *data, char *param_name)
 	ft_izero(arr, 6);
 	if (!(objs = (t_scene *)malloc(sizeof(t_scene))))
 		return (-1);
-	objectNull(objs);
-	num_obj = countFigure(param_name, 0, NULL, arr);
-	if (!(data->mlx = (t_mlx *)malloc(sizeof(t_mlx))) || !objectsmalloc(objs, num_obj))
+	object_null(objs);
+	num_obj = countfigure(param_name, 0, NULL, arr);
+	if (!(data->mlx = (t_mlx *)malloc(sizeof(t_mlx)))
+		|| !objectsmalloc(objs, num_obj))
 		return (-1);
 	data->p_object = objs;
 	objs->num_l_src = num_obj[0];
@@ -90,6 +95,6 @@ int				assignment(t_data *data, char *param_name)
 	objs->num_cylns = num_obj[2];
 	objs->num_cons = num_obj[3];
 	objs->num_plans = num_obj[4];
-	setDefault(objs);
+	set_default(objs);
 	return (1);
 }

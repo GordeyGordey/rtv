@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quadratic_equation.c                               :+:      :+:    :+:   */
+/*   quadraticequation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:19:19 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/06 13:19:20 by gordey           ###   ########.fr       */
+/*   Updated: 2020/11/11 15:21:55 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	min(double a, double b)
 	return (0.0f);
 }
 
-double			quadr_equation(t_quadr_equation factor, t_raydata *ray)
+double	quadr_equation(t_quadr_equation factor, t_raydata *ray)
 {
 	double	dis;
 	double	t_1;

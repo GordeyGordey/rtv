@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_utils.c                                       :+:      :+:    :+:   */
+/*   readutils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:17:45 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/06 13:17:48 by gordey           ###   ########.fr       */
+/*   Updated: 2020/11/11 13:26:53 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void			position(t_coord *p, char *arr, t_data *data)
 	if (arr)
 	{
 		if (!(coord = ft_strsplit(arr, ' ')))
-			exitFree("Malloc error\n", 1, data);
+			exit_free("Malloc error\n", 1, data);
 		len = ft_arrlen(coord);
 		p->x = (len > 0) ? coordinate(coord[0]) : DEFAULT_COORDINATE;
 		p->y = (len > 1) ? coordinate(coord[1]) : DEFAULT_COORDINATE;

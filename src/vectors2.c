@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors2.c                                        :+:      :+:    :+:   */
+/*   vectors2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/06 13:18:56 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/06 13:18:58 by gordey           ###   ########.fr       */
+/*   Created: 2020/11/11 15:22:04 by wendell           #+#    #+#             */
+/*   Updated: 2020/11/11 15:22:13 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-double		vectLen(t_coord vector)
+double		vect_len(t_coord vector)
 {
 	return (sqrt(vector.x * vector.x + vector.y * vector.y
 			+ vector.z * vector.z));
 }
 
-t_coord		vectNormal(t_coord vector)
+t_coord		vect_normal(t_coord vector)
 {
 	double	vec_len;
 
-	vec_len = vectLen(vector);
+	vec_len = vect_len(vector);
 	vector.x /= vec_len;
 	vector.y /= vec_len;
 	vector.z /= vec_len;

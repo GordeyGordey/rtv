@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   light2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:19:33 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/08 17:07:13 by gordey           ###   ########.fr       */
+/*   Updated: 2020/11/11 15:29:17 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
 int		shadow_overlay(t_light *src, t_coord *l_vctr, t_objectinfo near,
- t_scene objs)
+	t_scene objs)
 {
 	double		vct_size;
 	t_raydata	ray;
 
 	if (src->type == POINT)
-		*l_vctr = vectSub(near.point, src->pos_or_dir);
+		*l_vctr = vect_sub(near.point, src->pos_or_dir);
 	else
-		*l_vctr = vectNormal(src->pos_or_dir);
-	vct_size = src->type == POINT ? vectLen(*l_vctr) : INFINITY;
-	ray = creatRay(vct_size, near.point, vectNormal(*l_vctr));
-	if (rayTrace(objs, ray, &near))
+		*l_vctr = vect_normal(src->pos_or_dir);
+	vct_size = src->type == POINT ? vect_len(*l_vctr) : INFINITY;
+	ray = creat_ray(vct_size, near.point, vect_normal(*l_vctr));
+	if (ray_trace(objs, ray, &near))
 		return (1);
 	return (0);
 }
@@ -38,13 +38,13 @@ t_color	diffuse(t_light *src, t_coord l_vctr, t_coord normal, t_color color)
 	light_pow = 0.0;
 	i = 0.0;
 	if ((nor_dot_l = dot(normal, l_vctr)) > 0.0)
-		light_pow = src->intensity * nor_dot_l / (vectLen(l_vctr));
+		light_pow = src->intensity * nor_dot_l / (vect_len(l_vctr));
 	color = color_scal(color, light_pow);
 	return (color);
 }
 
 t_color	specular(t_light *src, t_coord l_vctr, t_objectinfo near,
- t_coord begin_vec)
+	t_coord begin_vec)
 {
 	double		light_pow;
 	t_coord		reflected;
@@ -55,20 +55,20 @@ t_color	specular(t_light *src, t_coord l_vctr, t_objectinfo near,
 	light_pow = 0.0;
 	if (near.specular != -1.0)
 	{
-		rev_begin = vectReverse(begin_vec);
-		near.normal = vectMult(near.normal, 2 * dot(near.normal, l_vctr));
-		reflected = vectSub(l_vctr, near.normal);
+		rev_begin = vect_reverse(begin_vec);
+		near.normal = vect_mult(near.normal, 2 * dot(near.normal, l_vctr));
+		reflected = vect_sub(l_vctr, near.normal);
 		r_dot_v = dot(reflected, rev_begin);
 		if (r_dot_v > 0)
-			light_pow = pow(r_dot_v / (vectLen(reflected) *
-										vectLen(rev_begin)), near.specular);
+			light_pow = pow(r_dot_v / (vect_len(reflected) *
+										vect_len(rev_begin)), near.specular);
 	}
 	color = color_scal(src->color, src->intensity * light_pow);
 	return (color);
 }
 
 t_color	compute_lighting(t_light *src, int num_light_src,
- t_objectinfo near, t_scene objs)
+	t_objectinfo near, t_scene objs)
 {
 	int		i;
 	t_color	color_pix;
@@ -99,10 +99,10 @@ t_color	trace_to_light_src(t_objectinfo near, t_scene objs)
 {
 	t_coord	d_t;
 
-	d_t = vectMult(objs.camera.direct, near.t);
-	near.point = vectSum(objs.camera.point, d_t);
-	near.normal = objectNormal(objs, near);
-	near.color_obj = getColor(objs, near.type, near.index);
-	near.specular = getSpecul(objs, near.type, near.index);
+	d_t = vect_mult(objs.camera.direct, near.t);
+	near.point = vect_sum(objs.camera.point, d_t);
+	near.normal = object_normal(objs, near);
+	near.color_obj = get_color(objs, near.type, near.index);
+	near.specular = get_specul(objs, near.type, near.index);
 	return (compute_lighting(objs.light_srcs, objs.num_l_src, near, objs));
 }

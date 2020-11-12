@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors1.c                                        :+:      :+:    :+:   */
+/*   vectors1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/06 13:19:03 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/06 13:19:05 by gordey           ###   ########.fr       */
+/*   Created: 2020/11/11 15:23:01 by wendell           #+#    #+#             */
+/*   Updated: 2020/11/11 15:23:13 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_coord		vectReverse(t_coord vector)
+t_coord		vect_reverse(t_coord vector)
 {
 	if (vector.x != 0.00)
 		vector.x = -vector.x;
@@ -23,7 +23,7 @@ t_coord		vectReverse(t_coord vector)
 	return (vector);
 }
 
-t_coord		vectSub(t_coord begin_point, t_coord end_point)
+t_coord		vect_sub(t_coord begin_point, t_coord end_point)
 {
 	t_coord		rez_point;
 
@@ -38,7 +38,7 @@ double		dot(t_coord vec_1, t_coord vec_2)
 	return ((vec_1.x * vec_2.x + vec_1.y * vec_2.y + vec_1.z * vec_2.z));
 }
 
-t_coord		vectSum(t_coord vec_1, t_coord vec_2)
+t_coord		vect_sum(t_coord vec_1, t_coord vec_2)
 {
 	t_coord		point;
 
@@ -48,7 +48,7 @@ t_coord		vectSum(t_coord vec_1, t_coord vec_2)
 	return (point);
 }
 
-t_coord		vectMult(t_coord vector, double mult)
+t_coord		vect_mult(t_coord vector, double mult)
 {
 	vector.x *= mult;
 	vector.y *= mult;

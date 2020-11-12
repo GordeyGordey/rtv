@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:19:46 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/08 17:11:46 by gordey           ###   ########.fr       */
+/*   Updated: 2020/11/11 15:21:32 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int				close_window(t_data *data)
+int			close_window(t_data *data)
 {
-	allFree(data);
+	all_free(data);
 	exit(0);
 }
 
-int				buttons_press(int key, t_data *data)
+int			buttons_press(int key, t_data *data)
 {
 	if (key == ESC)
 		close_window(data);
 	return (0);
 }
 
-t_color		getColor(t_scene objs, int type, int index)
+t_color		get_color(t_scene objs, int type, int index)
 {
 	if (type == SPH)
 		return (objs.sph_objs[index].color);
@@ -37,7 +37,7 @@ t_color		getColor(t_scene objs, int type, int index)
 		return (objs.plane_objs[index].color);
 }
 
-int			getSpecul(t_scene objs, int type, int index)
+int			get_specul(t_scene objs, int type, int index)
 {
 	if (type == SPH)
 		return (objs.sph_objs[index].specular);
@@ -49,13 +49,13 @@ int			getSpecul(t_scene objs, int type, int index)
 		return (objs.plane_objs[index].specular);
 }
 
-t_coord		getDirection(t_vector camera, int x, int y)
+t_coord		get_direction(t_vector camera, int x, int y)
 {
 	t_coord		direction;
 	t_coord		point;
 
 	point = (t_coord){x - (WIN_WID / 2), (WIN_HIG / 2) - y, WIN_DIST};
-	point = vecRotation(point, camera.roter);
-	direction = vectNormal(vectSub(camera.point, point));
+	point = vec_rotation(point, camera.roter);
+	direction = vect_normal(vect_sub(camera.point, point));
 	return (direction);
 }

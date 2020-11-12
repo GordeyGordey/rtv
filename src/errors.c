@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/06 13:18:35 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/08 16:45:29 by gordey           ###   ########.fr       */
+/*   Created: 2020/11/11 14:48:51 by wendell           #+#    #+#             */
+/*   Updated: 2020/11/11 14:49:31 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		exitError(char *text)
+int		exit_error(char *text)
 {
 	ft_putstr(text);
 	exit(0);
 }
 
-void	exitFree(char *text, int code, t_data *data)
+void	exit_free(char *text, int code, t_data *data)
 {
 	ft_putstr(text);
-	allFree(data);
+	all_free(data);
 	exit(code);
 }
 
-void			allFree(t_data *data)
+void	all_free(t_data *data)
 {
 	if (data)
 	{

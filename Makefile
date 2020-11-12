@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gordey <gordey@student.42.fr>              +#+  +:+       +#+         #
+#    By: wendell <wendell@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/04 11:52:28 by gordey            #+#    #+#              #
-#    Updated: 2020/11/08 17:13:40 by gordey           ###   ########.fr        #
+#    Updated: 2020/11/11 15:14:47 by wendell          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS =
 
 CC = gcc
 
-MLX = -I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext -framework OpenGL -framework AppKit
+MLX = -lmlx -framework OpenGL -framework AppKit
 
 COMP = $(CC) $(CFLAGS) $(INCLUDES)
 
@@ -25,7 +25,7 @@ LIBFT_H = -I $(LIBFT_DIR)
 LIBFT_A = libft.a
 LIBFT = $(LIBFT_DIR)$(LIBFT_A)
 
-HEAD_DIR = header/
+HEAD_DIR = include/
 RTV1_H = -I $(HEAD_DIR)
 HEAD = $(HEAD_DIR)rtv1.h
 

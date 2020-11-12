@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   setdefault.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/04 10:43:29 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/08 17:00:28 by gordey           ###   ########.fr       */
+/*   Created: 2020/11/11 15:29:26 by wendell           #+#    #+#             */
+/*   Updated: 2020/11/11 15:29:29 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void		objectNull(t_scene *objs)
+void		object_null(t_scene *objs)
 {
 	objs->light_srcs = NULL;
 	objs->plane_objs = NULL;
@@ -21,7 +21,7 @@ void		objectNull(t_scene *objs)
 	objs->cyln_objs = NULL;
 }
 
-void		setDefault(t_scene *objs)
+void		set_default(t_scene *objs)
 {
 	objs->camera.point.x = DEFAULT_CAMERA;
 	objs->camera.point.y = DEFAULT_CAMERA;
@@ -33,7 +33,7 @@ void		setDefault(t_scene *objs)
 	objs->light_srcs[0].intensity = DEFAULT_INTENSIVITY;
 }
 
-void		structPreset(t_scene *objects)
+void		struct_preset(t_scene *objects)
 {
 	objects->num_sphs = 0;
 	objects->num_cylns = 0;

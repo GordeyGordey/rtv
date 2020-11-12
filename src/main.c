@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 14:16:02 by gordey            #+#    #+#             */
-/*   Updated: 2020/11/08 16:45:29 by gordey           ###   ########.fr       */
+/*   Updated: 2020/11/11 13:26:53 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ int		main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		fileExtension(av[1]);
+		file_extension(av[1]);
 		if (!(data = (t_data*)malloc(sizeof(t_data))))
-			exitFree("Malloc error\n", 1, data);
+			exit_free("Malloc error\n", 1, data);
 		if (!(assignment(data, av[1])))
-			exitFree("Error\n", 1, data);
-		readScene(data, av[1]);
+			exit_free("Error\n", 1, data);
+		read_scene(data, av[1]);
 		grafic(data, data->mlx);
-		allFree(data);
+		all_free(data);
 	}
 	else
-		return (exitError("No file or too many fieles\n"));
+		return (exit_error("No file or too many fieles\n"));
 	return (0);
 }

@@ -3,11 +3,14 @@ plane		0.0 -1.0 1.0	blue	0.0 1.0 0.0
 
 #figure 	position	 	color		rotation	  angle		specular
 cone		0.0 0.0 5.0		yellow		0.0 1.0 0.0		80
+sphere		1.0 -0.5 3.5	0.1		red		9
+sphere		1.1 -0.5 3.5	0.1		red		9
 
 #   		position		rotation
 camera		0.0 0.0 0.0		0.0 0.0 0.0
 
 #light		type		intensity	position		color
-light		POINT		0.8			1.0 1.0 2.0     white
-
+@light		POINT		0.8			1.0 0.3 2.0     white
+@light		POINT		0.8			2.0 0.3 2.0     white
+light		POINT		0.8			3.0 0.3 2.0     white
 light		AMBIENT		0.0
